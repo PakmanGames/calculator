@@ -1,0 +1,18 @@
+* {
+    gap: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.buttons {
+    flex-direction: row;
+}
