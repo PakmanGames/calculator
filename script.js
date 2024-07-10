@@ -1,12 +1,37 @@
 const operation = {};
-const btns = document.querySelectorAll("button");
-const buttons = Array.from(btns);
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", (e) => {
-        console.log(buttons[i].textContent);
+const numberBtns = document.querySelectorAll(".numbers button");
+const numberButtons = Array.from(numberBtns);
+
+for (let i = 0; i < numberButtons.length; i++) {
+    numberButtons[i].addEventListener("click", () => {
+        console.log(numberButtons[i].textContent);
     });
 }
 
+const operatorBtns = document.querySelectorAll(".operators button");
+const operatorButtons = Array.from(operatorBtns);
+
+for (let i = 0; i < operatorButtons.length; i++) {
+    operatorButtons[i].addEventListener("click", () => {
+        console.log(operatorButtons[i].textContent);
+    });
+}
+
+const del = document.querySelector("#del-btn");
+const clear = document.querySelector("#clear-btn");
+const equal = document.querySelector("#equal-btn");
+
+del.addEventListener("click", () => {
+    console.log(del.textContent);
+});
+
+clear.addEventListener("click", () => {
+    console.log(clear.textContent);
+});
+
+equal.addEventListener("click", () => {
+    console.log(equal.textContent);
+});
 
 function add(a, b) {
     return a + b;

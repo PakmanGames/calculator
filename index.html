@@ -7,7 +7,7 @@
         <title>Calculator</title>
     </head>
     <body class="container">
-        <div>Calculator</div>
+        <div class="title">Calculator</div>
         <div class="calculator container">
             <div class="display">0</div>
             <div class="buttons container">
@@ -24,16 +24,25 @@
                     <button>0</button>
                     <button>.</button>
                 </div>
-                <div class="operators container">
-                    <button>Del</button>
-                    <button>AC</button>
-                    <button>x</button>
-                    <button>/</button>
-                    <button>+</button>
-                    <button>-</button>
-                    <button>=</button>
+                <div class="operations container">
+                    <div>
+                        <button id="del-btn">Del</button>
+                        <button id="clear-btn">AC</button>
+                    </div>
+                    <div class="operators container">
+                        <button>x</button>
+                        <button>/</button>
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
+                    <button id="equal-btn">=</button>
                 </div>
             </div>
+        </div>
+        <div id="footer">
+            <img src="https://avatars.githubusercontent.com/u/147354924?v=4" alt="PakmanGames">
+            <a href="https://github.com/PakmanGames" target="_blank">PakmanGames</a>
+            <div>2024</div>
         </div>
         <script src="./script.js"></script>
     </body>
