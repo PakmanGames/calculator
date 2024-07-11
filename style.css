@@ -6,6 +6,7 @@
     margin: 0px;
 }
 
+/* Fill entire page */
 html, body {
     height: 100%;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -50,8 +51,10 @@ html, body {
 button {
     height: 120px;
     width: 120px;
+    cursor: pointer;
 }
 
+/* Make zero and equal buttons stand out */
 .zero-btn, .equal-btn {
     width: 240px;
 }
@@ -60,18 +63,17 @@ button {
     flex-direction: row;
 }
 
+/* Make numbers and operators containers take up a 3:2 ratio of space */
 .numbers {
     display: flex;
     flex: 3;
     flex-wrap: wrap;
-    width: 360px;
 }
 
 .operators {
     display: flex;
     flex: 2;
     flex-wrap: wrap;
-    width: 240px;
 }
 
 #footer {
@@ -89,6 +91,7 @@ a {
     text-decoration: none;
 }
 
+/* Show link when hovered */
 a:hover {
     text-decoration: underline;
 }
