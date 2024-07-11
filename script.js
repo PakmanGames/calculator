@@ -3,35 +3,49 @@ const numberBtns = document.querySelectorAll(".numbers button");
 const numberButtons = Array.from(numberBtns);
 
 for (let i = 0; i < numberButtons.length; i++) {
-    numberButtons[i].addEventListener("click", () => {
-        console.log(numberButtons[i].textContent);
-    });
+    if (numberButtons[i].classList.contains("zero-btn") || numberButtons[i].classList.contains("decimal-btn")) {
+        numberButtons[i].addEventListener("click", () => {
+            console.log(numberButtons[i].textContent);
+        });
+    } else {
+        numberButtons[i].addEventListener("click", () => {
+            console.log(numberButtons[i].textContent);
+        });
+    }
 }
 
 const operatorBtns = document.querySelectorAll(".operators button");
 const operatorButtons = Array.from(operatorBtns);
 
 for (let i = 0; i < operatorButtons.length; i++) {
-    operatorButtons[i].addEventListener("click", () => {
-        console.log(operatorButtons[i].textContent);
-    });
+    if (operatorButtons[i].classList.contains("del-btn") || 
+        operatorButtons[i].classList.contains("clear-btn") || 
+        operatorButtons[i].classList.contains("equal-btn")) {
+        operatorButtons[i].addEventListener("click", () => {
+            console.log(operatorButtons[i].textContent);
+        });
+    } else {
+        operatorButtons[i].addEventListener("click", () => {
+            console.log(operatorButtons[i].textContent);
+        });
+    }
 }
 
-const del = document.querySelector("#del-btn");
-const clear = document.querySelector("#clear-btn");
-const equal = document.querySelector("#equal-btn");
+// const del = document.querySelector(".del-btn");
+// const clear = document.querySelector(".clear-btn");
+// const equal = document.querySelector(".equal-btn");
 
-del.addEventListener("click", () => {
-    console.log(del.textContent);
-});
+// del.addEventListener("click", () => {
+//     console.log(del.textContent);
+// });
 
-clear.addEventListener("click", () => {
-    console.log(clear.textContent);
-});
+// clear.addEventListener("click", () => {
+//     console.log(clear.textContent);
+// });
 
-equal.addEventListener("click", () => {
-    console.log(equal.textContent);
-});
+// equal.addEventListener("click", () => {
+//     console.log(equal.textContent);
+// });
 
 function add(a, b) {
     return a + b;
