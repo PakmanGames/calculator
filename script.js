@@ -229,8 +229,15 @@ function operate(operation) {
 
 // Keeps number within 11 characters to fit on display screen
 function lengthCheck(num) {
-    if (String(num).split("").length > 11) {
-        return num = String(num).split("").slice(0, 11).join("");
+    const arr = String(num).split("");
+    if (arr.length > 11) {
+        if (num = arr.some(item => item === "e" ? true : false)) {
+            const end = arr.slice(arr.indexOf("e"));
+            num = arr.slice(0, 11 - end.length);
+            end.map((item) => num.push(item));
+            return num.join("");
+        }
+        return arr.slice(0, 11).join("")
     }
     return num;
 }
