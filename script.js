@@ -7,6 +7,28 @@ const operation = {
 
 const display = document.querySelector(".display");
 
+// Selects all the buttons and the embedded audio
+const allButtons = document.querySelectorAll("button");
+const click = document.querySelector("audio");
+
+// Adds a sound effect when user clicks any button
+for (let i = 0; i < allButtons.length; i++) {
+    allButtons[i].addEventListener("mousedown", () => {
+        click.currentTime = 0;
+        click.play();
+        allButtons[i].classList.add("pressed");
+    });
+
+    allButtons[i].addEventListener("mouseup", () => {
+        allButtons[i].classList.remove("pressed");
+    })
+
+    // To account for if user press and holds while leaving element area
+    allButtons[i].addEventListener("mouseleave", () => {
+        allButtons[i].classList.remove("pressed");
+    })
+}
+
 // Number buttons on the left
 const numberBtns = document.querySelectorAll(".numbers button");
 const numberButtons = Array.from(numberBtns);
@@ -18,32 +40,10 @@ for (let i = 0; i < numberButtons.length; i++) {
         numberButtons[i].addEventListener("click", () => {
             if (display.classList.contains("first")) {
                 // Changing the first value
-                if (operation.first.length !== 0 && operation.first[0] !== 0 && operation.first[1] !== ".") {
-                    // If the first value doesn't start with `0` and `.`
-                    operation.first.push(0);
-                    display.textContent = lengthCheck(operation.first.join(""));
-                } else if (operation.first[1] !== ".") {
-                    // If user spams `0` when its already the value
-                    operation.first = [0];
-                    display.textContent = lengthCheck(operation.first.join(""));
-                } else {
-                    operation.first.push(0);
-                    display.textContent = lengthCheck(operation.first.join(""));
-                }
+                valueZeroCheck(operation.first);
             } else if (display.classList.contains("second")) {
                 // Changing the second value
-                if (operation.second.length !== 0 && operation.second[0] !== 0 && operation.second[1] !== ".") {
-                    // If the second value doesn't start with `0` and `.`
-                    operation.second.push(0);
-                    display.textContent = lengthCheck(operation.second.join(""));
-                } else if (operation.second[1] !== ".") {
-                    // If user spams `0` when its already the value
-                    operation.second = [0];
-                    display.textContent = lengthCheck(operation.second.join(""));
-                } else {
-                    operation.second.push(0);
-                    display.textContent = lengthCheck(operation.second.join(""));
-                }
+                valueZeroCheck(operation.second);
             }
         });
     } else if (numberButtons[i].classList.contains("decimal-btn") && numberButtons[i].textContent === ".") {
@@ -51,26 +51,10 @@ for (let i = 0; i < numberButtons.length; i++) {
         numberButtons[i].addEventListener("click", () => {
             if (operation.operator === null && display.classList.contains("first")) {
                 // Changing the first value
-                if (operation.first.length === 0) {
-                    // If the first value is empty and user presses decimal first
-                    operation.first.push(0, ".");
-                    display.textContent = lengthCheck(operation.first.join(""));
-                } else if (! operation.first.some(item => item === "." ? true : false)) {
-                    // Check if the first value already has a decimal
-                    operation.first.push(".");
-                    display.textContent = lengthCheck(operation.first.join(""));
-                }
+                valueDecimalCheck(operation.first);
             } else if (operation.operator !== null && display.classList.contains("second")) {
                 // Changing the second value
-                if (operation.second.length === 0) {
-                    // If second value is empty and user presses decimal first
-                    operation.second.push(0, ".");
-                    display.textContent = lengthCheck(operation.second.join(""));
-                } else if (! operation.second.some(item => item === "." ? true : false)) {
-                    // Check if second value already has a decimal
-                    operation.second.push(".");
-                    display.textContent = lengthCheck(operation.second.join(""));
-                }
+                valueDecimalCheck(operation.second);
             }
         });
     } else {
@@ -130,18 +114,10 @@ for (let i = 0; i < operatorButtons.length; i++) {
         operatorButtons[i].addEventListener("click", () => {
             if (display.classList.contains("first")) {
                 // Changing the first value
-                operation.first.pop();
-                if (operation.first.length === 0) {
-                    operation.first.push(0);
-                }
-                display.textContent = lengthCheck(operation.first.join(""));
+                deleteButton(operation.first);
             } else if (display.classList.contains("second")) {
                 // Changing the second value
-                operation.second.pop();
-                if (operation.second.length === 0) {
-                    operation.second.push(0);
-                }
-                display.textContent = lengthCheck(operation.second.join(""));
+                deleteButton(operation.second);
             }
         })
     } else { // The regular operators 'x', '/', '+', '-'
@@ -170,6 +146,41 @@ for (let i = 0; i < operatorButtons.length; i++) {
         });
     }
     
+}
+
+// Checks value of certain conditions when user presses `0` to handle complications before they arise
+function valueZeroCheck(numbers) {
+    if (numbers.length !== 0 && numbers[0] !== 0 && numbers[1] !== ".") {
+        // If the value doesn't start with `0` and `.`
+        numbers.push(0);
+    } else if (numbers[1] !== ".") {
+        // If user spams `0` when its already the value
+        numbers = [0];
+    } else {
+        numbers.push(0);
+    }
+    display.textContent = lengthCheck(numbers.join(""));
+}
+
+// Checks value of certain conditions when user presses `.` to handle complications before they arise
+function valueDecimalCheck(numbers) {
+    if (numbers.length === 0) {
+        // If the value is empty and user presses decimal first: add zero before decimal
+        numbers.push(0, ".");
+    } else if (! numbers.some(item => item === "." ? true : false)) {
+        // Check if the value already has a decimal
+        numbers.push(".");
+    }
+    display.textContent = lengthCheck(numbers.join(""));
+}
+
+// Deletes the last digit of the value
+function deleteButton(numbers) {
+    numbers.pop();
+    if (numbers.length === 0) {
+        numbers.push(0);
+    }
+    display.textContent = lengthCheck(numbers.join(""));
 }
 
 // CLears any values of operation
@@ -218,22 +229,4 @@ function lengthCheck(num) {
         return num = String(num).split("").slice(0, 11).join("");
     }
     return num;
-}
-
-const allButtons = document.querySelectorAll("button");
-const click = document.querySelector("audio");
-for (let i = 0; i < allButtons.length; i++) {
-    allButtons[i].addEventListener("mousedown", () => {
-        click.currentTime = 0;
-        click.play();
-        allButtons[i].classList.add("pressed");
-    });
-
-    allButtons[i].addEventListener("mouseup", () => {
-        allButtons[i].classList.remove("pressed");
-    })
-
-    allButtons[i].addEventListener("mouseleave", () => {
-        allButtons[i].classList.remove("pressed");
-    })
 }
