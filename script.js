@@ -134,14 +134,14 @@ for (let i = 0; i < operatorButtons.length; i++) {
                 if (operation.first.length === 0) {
                     operation.first.push(0);
                 }
-                display.textContent = operation.first.join("");
+                display.textContent = lengthCheck(operation.first.join(""));
             } else if (display.classList.contains("second")) {
                 // Changing the second value
                 operation.second.pop();
                 if (operation.second.length === 0) {
                     operation.second.push(0);
                 }
-                display.textContent = operation.second.join("");
+                display.textContent = lengthCheck(operation.second.join(""));
             }
         })
     } else { // The regular operators 'x', '/', '+', '-'
@@ -232,7 +232,7 @@ for (let i = 0; i < allButtons.length; i++) {
     allButtons[i].addEventListener("mouseup", () => {
         allButtons[i].classList.remove("pressed");
     })
-    
+
     allButtons[i].addEventListener("mouseleave", () => {
         allButtons[i].classList.remove("pressed");
     })

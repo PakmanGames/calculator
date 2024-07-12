@@ -12,10 +12,16 @@ html, body {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+/* Large title with gradient text */
 .title {
-    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 70px;
     font-weight: bolder;
-    margin: 33px;
+    margin: 10px;
+    background: linear-gradient(darkblue, rgb(138, 105, 189));
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .container {
@@ -27,6 +33,7 @@ html, body {
     flex-wrap: wrap;
 }
 
+/* Prevent body from wrapping */
 body.container {
     flex-wrap: nowrap;
 }
@@ -54,6 +61,7 @@ body.container {
     background-color: darkgrey;
     border: 5px solid black;
     border-radius: 16px;
+    box-shadow: 0 0 5px darkblue;
 }
 
 button {
@@ -66,14 +74,26 @@ button {
     border-radius: 16px;
 }
 
-/* Make zero and equal buttons stand out */
+/* Make zero and equal buttons stand out in size*/
 .zero-btn, .equal-btn {
     width: 205px;
 }
 
+/* Colourize special buttons */
+.del-btn {
+    background-color: lightpink;
+}
+
+.clear-btn {
+    background-color: peachpuff;
+}
+
+.equal-btn {
+    background-color: palegoldenrod;
+}
+
 .buttons {
     flex-direction: row;
-    /* gap: 5px; */
     padding: 20px;
 }
 
@@ -92,10 +112,11 @@ button {
     gap: 5px;
 }
 
+/* Makes button look like it was pressed */
 .pressed {
     transform: scale(0.9);
-    border-color: green;
-    box-shadow: 0 0 1rem darkgreen;
+    border-color: black;
+    box-shadow: 0 0 1rem black;
 }
 
 #footer {
