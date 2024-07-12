@@ -27,18 +27,24 @@ html, body {
     flex-wrap: wrap;
 }
 
+body.container {
+    flex-wrap: nowrap;
+}
+
 .display {
     display: flex;
     margin: 20px;
     padding: 20px;
     height: 50px;
-    width: 520px;
+    width: 510px;
     align-items: center;
     justify-content: flex-end;
     background-color: white;
     font-family: Michroma, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 50px;
     font-weight: bolder;
+    border: 5px solid black;
+    border-radius: 16px;
 }
 
 .calculator {
@@ -46,21 +52,29 @@ html, body {
     height: 800px;
     width: 600px;
     background-color: darkgrey;
+    border: 5px solid black;
+    border-radius: 16px;
 }
 
 button {
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
     cursor: pointer;
+    font-size: 30px;
+    font-weight: bold;
+    border: 5px solid black;
+    border-radius: 16px;
 }
 
 /* Make zero and equal buttons stand out */
 .zero-btn, .equal-btn {
-    width: 240px;
+    width: 205px;
 }
 
 .buttons {
     flex-direction: row;
+    /* gap: 5px; */
+    padding: 20px;
 }
 
 /* Make numbers and operators containers take up a 3:2 ratio of space */
@@ -68,12 +82,20 @@ button {
     display: flex;
     flex: 3;
     flex-wrap: wrap;
+    gap: 5px;
 }
 
 .operators {
     display: flex;
     flex: 2;
     flex-wrap: wrap;
+    gap: 5px;
+}
+
+.pressed {
+    transform: scale(0.9);
+    border-color: green;
+    box-shadow: 0 0 1rem darkgreen;
 }
 
 #footer {

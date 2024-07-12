@@ -54,22 +54,22 @@ for (let i = 0; i < numberButtons.length; i++) {
                 if (operation.first.length === 0) {
                     // If the first value is empty and user presses decimal first
                     operation.first.push(0, ".");
-                    display.textContent = operation.first.join("");
+                    display.textContent = lengthCheck(operation.first.join(""));
                 } else if (! operation.first.some(item => item === "." ? true : false)) {
                     // Check if the first value already has a decimal
                     operation.first.push(".");
-                    display.textContent = operation.first.join("");
+                    display.textContent = lengthCheck(operation.first.join(""));
                 }
             } else if (operation.operator !== null && display.classList.contains("second")) {
                 // Changing the second value
                 if (operation.second.length === 0) {
                     // If second value is empty and user presses decimal first
                     operation.second.push(0, ".");
-                    display.textContent = operation.second.join("");
+                    display.textContent = lengthCheck(operation.second.join(""));
                 } else if (! operation.second.some(item => item === "." ? true : false)) {
                     // Check if second value already has a decimal
                     operation.second.push(".");
-                    display.textContent = operation.second.join("");
+                    display.textContent = lengthCheck(operation.second.join(""));
                 }
             }
         });
@@ -78,7 +78,7 @@ for (let i = 0; i < numberButtons.length; i++) {
             if (operation.operator === null && display.classList.contains("first")) {
                 // Changing the first value
                 operation.first.push(numberButtons[i].textContent);
-                display.textContent = operation.first.join("");
+                display.textContent = lengthCheck(operation.first.join(""));
             } else if (operation.operator !== null && display.classList.contains("second")) {
                 // Changing the second value
                 if (operation.second[0] === 0 && operation.second[1] !== ".") {
@@ -218,4 +218,22 @@ function lengthCheck(num) {
         return num = String(num).split("").slice(0, 11).join("");
     }
     return num;
+}
+
+const allButtons = document.querySelectorAll("button");
+const click = document.querySelector("audio");
+for (let i = 0; i < allButtons.length; i++) {
+    allButtons[i].addEventListener("mousedown", () => {
+        click.currentTime = 0;
+        click.play();
+        allButtons[i].classList.add("pressed");
+    });
+
+    allButtons[i].addEventListener("mouseup", () => {
+        allButtons[i].classList.remove("pressed");
+    })
+    
+    allButtons[i].addEventListener("mouseleave", () => {
+        allButtons[i].classList.remove("pressed");
+    })
 }
