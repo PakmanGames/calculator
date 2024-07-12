@@ -79,16 +79,21 @@ button {
     width: 205px;
 }
 
-/* Colourize special buttons */
-.del-btn {
+/* Colourize operator buttons */
+
+.operators button {
+    background-color: rgb(247, 244, 221);
+}
+
+.operators .del-btn {
     background-color: lightpink;
 }
 
-.clear-btn {
+.operators .clear-btn {
     background-color: peachpuff;
 }
 
-.equal-btn {
+.operators .equal-btn {
     background-color: palegoldenrod;
 }
 
