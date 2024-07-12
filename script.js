@@ -191,21 +191,25 @@ function clear(operation) {
 }
 
 function add(a, b) {
-    return a + b;
+    return round(a + b);
 }
 
 function subtract(a, b) {
-    return a - b;
+    return round(a - b);
 }
 
 function multiply(a, b) {
-    return a * b;
+    return round(a * b);
 }
 
 function divide(a, b) {
     if (b === 0)
         return NaN;
-    return lengthCheck(a / b);
+    return round(lengthCheck(a / b));
+}
+
+function round(num) {
+    return Math.round(num * 10**5) / 10 **5;
 }
 
 // Performs the calculation
